@@ -18,11 +18,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 
@@ -73,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             if (strings != null) {
 
                 for (String recipeString : strings) {
-                    rvRecipeMain.setAdapter(new RecipeMainAdapter(getApplicationContext(), recipeString));
+                    //rvRecipeMain.setAdapter(new RecipeMainAdapter(getApplicationContext(), recipeString));
                 }
             }
         }
