@@ -25,6 +25,8 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.Vi
         this.recipeMainArrayList = recipeMainArrayList;
     }
 
+
+
     @Override
     public RecipeMainAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_main_card, parent, false);
