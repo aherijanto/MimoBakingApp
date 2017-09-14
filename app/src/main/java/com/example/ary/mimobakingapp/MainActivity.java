@@ -7,9 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.example.ary.mimobakingapp.API.RecipeInterface;
+
 import com.example.ary.mimobakingapp.Adapter.RecipeMainAdapter;
-import com.example.ary.mimobakingapp.Model.RecipeJSONResponse;
+
 import com.example.ary.mimobakingapp.Utilities.ConnectUtils;
 import com.example.ary.mimobakingapp.Utilities.RecipeOnJSON;
 
