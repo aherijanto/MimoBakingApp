@@ -49,16 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String[] doInBackground(String... params) {
-            if (params.length == 0) {
-                return null;
-            }
+
 
             String me = params[0];
-            URL RecipeRequestUrl = ConnectUtils.buildURL(me);
+            URL RecipeRequestUrl = ConnectUtils.buildURL();
 
             try {
-                String RecipeResponse = ConnectUtils
-                        .getResponseFromHttpUrl(RecipeRequestUrl);
+                String RecipeResponse = ConnectUtils.getResponseFromHttpUrl(RecipeRequestUrl);
 
                 String[] JsonRecipeData = RecipeOnJSON.getRecipeName(MainActivity.this,RecipeResponse);
 

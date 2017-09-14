@@ -9,7 +9,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
+import static android.content.ContentValues.TAG;
+
 
 /**
  * Created by ary on 9/14/17.
@@ -19,7 +20,7 @@ public class ConnectUtils {
     private static final String urlJSON =
             "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
 
-    public static URL buildURL(String me){
+    public static URL buildURL(){
         URL url=null;
 
             try {
