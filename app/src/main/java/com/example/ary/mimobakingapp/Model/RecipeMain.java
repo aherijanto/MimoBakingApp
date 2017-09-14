@@ -4,45 +4,83 @@ package com.example.ary.mimobakingapp.Model;
  * Created by ary on 9/14/17.
  */
 
-public class RecipeMain {
+public class RecipeMain
+{
+    private Ingredients[] ingredients;
 
-    private Integer recipeId;
-    private String recipeName;
-    private Integer recipeServing;
+    private String id;
 
-    public RecipeMain(){
+    private String servings;
 
-    }
+    private String name;
 
-    public RecipeMain(Integer recipeId, String recipeName, Integer recipeServing)
+    private String image;
+
+    private Steps[] steps;
+
+    public Ingredients[] getIngredients ()
     {
-        this.recipeId=recipeId;
-        this.recipeName=recipeName;
+        return ingredients;
     }
 
-
-    public Integer getRecipeId(){
-        return  recipeId;
+    public void setIngredients (Ingredients[] ingredients)
+    {
+        this.ingredients = ingredients;
     }
 
-    public String getRecipeName(){
-        return recipeName;
+    public String getId ()
+    {
+        return id;
     }
 
-    public Integer getRecipeServing() {
-        return recipeServing;
+    public void setId (String id)
+    {
+        this.id = id;
     }
 
-    public void setRecipeId(Integer recipeId) {
-        this.recipeId = recipeId;
+    public String getServings ()
+    {
+        return servings;
     }
 
-    public void setRecipeName(String recipeName) {
-        this.recipeName = recipeName;
+    public void setServings (String servings)
+    {
+        this.servings = servings;
     }
 
-    public void setRecipeServing(Integer recipeServing) {
-        this.recipeServing = recipeServing;
+    public String getName ()
+    {
+        return name;
+    }
+
+    public void setName (String name)
+    {
+        this.name = name;
+    }
+
+    public String getImage ()
+    {
+        return image;
+    }
+
+    public void setImage (String image)
+    {
+        this.image = image;
+    }
+
+    public Steps[] getSteps ()
+    {
+        return steps;
+    }
+
+    public void setSteps (Steps[] steps)
+    {
+        this.steps = steps;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "ClassPojo [ingredients = "+ingredients+", id = "+id+", servings = "+servings+", name = "+name+", image = "+image+", steps = "+steps+"]";
     }
 }
-

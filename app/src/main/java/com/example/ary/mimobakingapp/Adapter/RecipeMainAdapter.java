@@ -33,7 +33,7 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.Vi
 
     @Override
     public void onBindViewHolder(RecipeMainAdapter.ViewHolder holder, int position) {
-        holder.card_recipeName.setText(recipeMainArrayList.get(position).getRecipeName());
+        holder.card_recipeName.setText(recipeMainArrayList.get(position).getName());
 
     }
 
