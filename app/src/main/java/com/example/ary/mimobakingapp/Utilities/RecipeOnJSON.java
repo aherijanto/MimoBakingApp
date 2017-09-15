@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 /**
  * Created by ary on 9/14/17.
  */
@@ -21,24 +23,24 @@ public class RecipeOnJSON {
 
         String[] parsedRecipe;
 
-        JSONObject recipeObjectJSON = new JSONObject(recipeListJSON);
-        JSONArray recipeListArray=recipeObjectJSON.getJSONArray(recipeList);
+        JSONArray recipeJSONArray = new JSONArray(recipeListJSON);
+        JSONObject myJSONObject;
 
-        parsedRecipe=new String[recipeListArray.length()];
+        parsedRecipe=new String[recipeJSONArray.length()];
 
-        for (int i = 0; i < recipeListArray.length(); i++){
+        for (int i = 0; i < recipeJSONArray.length(); i++){
             String recipeName;
 
-            JSONObject myList = recipeListArray.getJSONObject(i);
-            JSONObject recipeObject = myList.getJSONArray(recipeIDField).getJSONObject(0);
-            recipeName = recipeObject.getString(recipeNameField);
+            myJSONObject = recipeJSONArray.getJSONObject(i);
+
+            recipeName = myJSONObject.getString(recipeNameField);
 
             parsedRecipe[i]=recipeName;
 
         }
 
-        return parsedRecipe;
 
+        return parsedRecipe;
 
     }
 }

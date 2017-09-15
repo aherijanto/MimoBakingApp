@@ -8,8 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 
-
-
+import com.example.ary.mimobakingapp.Adapter.RecipeMainAdapter;
 import com.example.ary.mimobakingapp.Utilities.ConnectUtils;
 import com.example.ary.mimobakingapp.Utilities.RecipeOnJSON;
 
@@ -23,8 +22,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rvRecipeMain;
-
-
+    private RecipeMainAdapter rvAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         rvRecipeMain.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         rvRecipeMain.setLayoutManager(layoutManager);
+
+
+
 
         new FetchRecipe().execute();
 
@@ -67,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String[] strings) {
             if (strings != null) {
 
-                for (String recipeString : strings) {
-                    //rvRecipeMain.setAdapter(new RecipeMainAdapter(getApplicationContext(), recipeString));
+
+
                 }
             }
         }
@@ -77,4 +78,4 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-}
+
