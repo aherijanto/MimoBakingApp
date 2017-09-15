@@ -21,33 +21,6 @@ import java.util.ArrayList;
 
 public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.MyViewHolder>{
 
-    private final ArrayList<Recipe> rvRecipeList;
-
-    Context context;
-
-    RecipeMainAdapter(Context context, ArrayList<Recipe> rvRecipeList) {
-        this.rvRecipeList = rvRecipeList;
-        this.context = context;
-    }
-
-    @Override
-    public RecipeMainAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recipe_main_card, parent, false);
-        return new MyViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.recipeName.setText(rvRecipeList.get(position).getName());
-        //String vote=Double.toString(rvRecipeList.get(position).getVoteAverage());
-        //viewHolder.userrating.setText(vote);
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -87,5 +60,38 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
 
         }
     }
+
+    private final ArrayList<Recipe> rvRecipeList;
+
+    Context context;
+
+    public RecipeMainAdapter(Context context, ArrayList<Recipe> rvRecipeList) {
+        this.rvRecipeList = rvRecipeList;
+        this.context = context;
+    }
+
+
+    @Override
+    public RecipeMainAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recipe_main_card, parent, false);
+        return new MyViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        TextView myRecipeName=holder.recipeName;
+        myRecipeName.setText(rvRecipeList.get(position).getName());
+        //String vote=Double.toString(rvRecipeList.get(position).getVoteAverage());
+        //viewHolder.userrating.setText(vote);
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
+
+
+
     }
 

@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         new FetchRecipe().execute();
 
     }
@@ -68,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String[] strings) {
             if (strings != null) {
 
+                rvRecipeMain.setAdapter(rvAdapter);
 
 
                 }
