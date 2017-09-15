@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 
-import com.example.ary.mimobakingapp.Adapter.RecipeMainAdapter;
+
 
 import com.example.ary.mimobakingapp.Utilities.ConnectUtils;
 import com.example.ary.mimobakingapp.Utilities.RecipeOnJSON;
@@ -24,7 +24,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rvRecipeMain;
 
-    private RecipeMainAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         protected String[] doInBackground(String... params) {
 
 
-            String me = params[0];
+
             URL RecipeRequestUrl = ConnectUtils.buildURL();
 
             try {
