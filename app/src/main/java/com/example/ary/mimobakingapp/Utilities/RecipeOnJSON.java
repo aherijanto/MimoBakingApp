@@ -25,8 +25,9 @@ public class RecipeOnJSON {
         final String recipeList="rcplist";
         final String recipeNameField="name";
         final String recipeIDField="id";
-        final String recipeIngField="ingredient";
+        final String recipeIngField="ingredients";
         final String recipeServing="servings";
+        final String recipeSteps="steps";
 
         final String ingredientQty="quantity";
         final String ingredienMeasure="measure";
@@ -36,7 +37,7 @@ public class RecipeOnJSON {
         final String stepsShortDesc="shortDescription";
         final String stepsDesc="description";
         final String stepsVideo="videoURL";
-        final String stepsThumb="thunbnailURL";
+        final String stepsThumb="thumbnailURL";
 
 
 
@@ -82,7 +83,7 @@ public class RecipeOnJSON {
             recipe.setIngredients(dataIngredient);
 
                         //parsing steps
-            JSONArray stepsJSONArray=myJSONObject.getJSONArray(recipeIngField);
+            JSONArray stepsJSONArray=myJSONObject.getJSONArray(recipeSteps);
             JSONObject stepsJSONObject;
 
             ArrayList<Steps> dataSteps=new ArrayList<>();
