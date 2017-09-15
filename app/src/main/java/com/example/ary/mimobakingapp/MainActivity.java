@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String[] strings) {
+        protected void onPostExecute(ArrayList<Recipe> strings) {
             if (strings != null) {
 
                 rvRecipeMain.setAdapter(rvAdapter);
