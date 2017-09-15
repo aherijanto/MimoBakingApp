@@ -1,12 +1,15 @@
 package com.example.ary.mimobakingapp.Model;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by ary on 9/15/17.
  */
 
 public class Recipe
 {
-    private Ingredients[] ingredients;
+    private ArrayList<Ingredients> ingredients;
 
     private String id;
 
@@ -16,14 +19,14 @@ public class Recipe
 
     private String image;
 
-    private Steps[] steps;
+    private ArrayList<Steps> steps;
 
-    public Ingredients[] getIngredients ()
+    public ArrayList<Ingredients> getIngredients ()
     {
         return ingredients;
     }
 
-    public void setIngredients (Ingredients[] ingredients)
+    public void setIngredients (ArrayList<Ingredients> ingredients)
     {
         this.ingredients = ingredients;
     }
@@ -68,12 +71,12 @@ public class Recipe
         this.image = image;
     }
 
-    public Steps[] getSteps ()
+    public ArrayList<Steps> getSteps ()
     {
         return steps;
     }
 
-    public void setSteps (Steps[] steps)
+    public void setSteps (ArrayList<Steps> steps)
     {
         this.steps = steps;
     }

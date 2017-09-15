@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public class FetchRecipe extends AsyncTask<String,Void,ArrayList<Recipe>>{
 
         @Override
-        protected String[] doInBackground(String... params) {
+        protected ArrayList<Recipe> doInBackground(String... params) {
 
 
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 String RecipeResponse = ConnectUtils.getResponseFromHttpUrl(RecipeRequestUrl);
 
-                 String [] JsonRecipeData = RecipeOnJSON.getRecipeName(MainActivity.this,RecipeResponse);
+                 ArrayList<Recipe> JsonRecipeData = RecipeOnJSON.getRecipeName(MainActivity.this,RecipeResponse);
 
 
                 return JsonRecipeData;

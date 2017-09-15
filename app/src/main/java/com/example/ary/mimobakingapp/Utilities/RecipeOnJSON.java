@@ -45,10 +45,10 @@ public class RecipeOnJSON {
         JSONObject myJSONObject;
 
 
-
+        Recipe recipe= new Recipe();
         ArrayList<Recipe> dataRecipe=new ArrayList();
-        ArrayList<Ingredients> dataIngredient= new ArrayList<>();
-        ArrayList<Steps> dataSteps=new ArrayList<>();
+
+
 
         for (int i = 0; i < recipeJSONArray.length(); i++){
             Integer recipeID;
@@ -66,6 +66,7 @@ public class RecipeOnJSON {
             JSONArray ingredientJSONArray=myJSONObject.getJSONArray(recipeIngField);
             JSONObject ingredientJSONObject;
 
+            ArrayList<Ingredients> dataIngredient= new ArrayList<>();
             for (int j = 0;j< ingredientJSONArray.length();j++){
                 Ingredients mdataIngredient= new Ingredients();
 
@@ -74,13 +75,17 @@ public class RecipeOnJSON {
                 mdataIngredient.setQuantity(ingredientJSONObject.getString(ingredientQty));
                 mdataIngredient.setMeasure(ingredientJSONObject.getString(ingredienMeasure));
                 mdataIngredient.setIngredient(ingredientJSONObject.getString(ingredientIng));
+
+                dataIngredient.add(mdataIngredient);
             }
 
+            recipe.setIngredients(dataIngredient);
 
                         //parsing steps
             JSONArray stepsJSONArray=myJSONObject.getJSONArray(recipeIngField);
             JSONObject stepsJSONObject;
 
+            ArrayList<Steps> dataSteps=new ArrayList<>();
             for (int k = 0;k< stepsJSONArray.length();k++){
 
                 Steps mdataSteps= new Steps();
@@ -92,12 +97,15 @@ public class RecipeOnJSON {
                 mdataSteps.setDescription(stepsJSONObject.getString(stepsDesc));
                 mdataSteps.setThumbnailURL(stepsJSONObject.getString(stepsThumb));
                 mdataSteps.setVideoURL(stepsJSONObject.getString(stepsVideo));
+
+                dataSteps.add(mdataSteps);
             }
+
 
 
             dataRecipe.add(mdataRecipe);
 
-
+            recipe.setSteps(dataSteps);
         }
 
 
