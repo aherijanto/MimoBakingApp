@@ -9,6 +9,7 @@ import android.util.Log;
 
 
 import com.example.ary.mimobakingapp.Adapter.RecipeMainAdapter;
+import com.example.ary.mimobakingapp.Model.Recipe;
 import com.example.ary.mimobakingapp.Utilities.ConnectUtils;
 import com.example.ary.mimobakingapp.Utilities.RecipeOnJSON;
 
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public class FetchRecipe extends AsyncTask<String,Void,String[]>{
+    public class FetchRecipe extends AsyncTask<String,Void,ArrayList<Recipe>>{
 
         @Override
         protected String[] doInBackground(String... params) {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 String RecipeResponse = ConnectUtils.getResponseFromHttpUrl(RecipeRequestUrl);
 
-                String[] JsonRecipeData = RecipeOnJSON.getRecipeName(MainActivity.this,RecipeResponse);
+                 String [] JsonRecipeData = RecipeOnJSON.getRecipeName(MainActivity.this,RecipeResponse);
 
 
                 return JsonRecipeData;

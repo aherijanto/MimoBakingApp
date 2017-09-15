@@ -17,37 +17,43 @@ import java.util.List;
 
 public class RecipeOnJSON {
 
-    public static String[] getRecipeName(Context context, String recipeListJSON)
+    public static ArrayList<Recipe> getRecipeName(Context context, String recipeListJSON)
             throws JSONException{
 
         final String recipeList="rcplist";
         final String recipeNameField="name";
         final String recipeIDField="id";
+        final String recipeIngField="ingredient";
+        final String recipeServing="servings";
 
-        String[] parsedRecipe;
+
 
         JSONArray recipeJSONArray = new JSONArray(recipeListJSON);
         JSONObject myJSONObject;
 
-        parsedRecipe=new String[recipeJSONArray.length()];
 
-        List<Recipe> dataRecipe=new ArrayList<>();
+
+        ArrayList<Recipe> dataRecipe=new ArrayList();
 
         for (int i = 0; i < recipeJSONArray.length(); i++){
+            Integer recipeID;
             String recipeName;
 
             Recipe mdataRecipe=new Recipe();
 
             myJSONObject = recipeJSONArray.getJSONObject(i);
 
-            recipeName = myJSONObject.getString(recipeNameField);
-            mdataRecipe.setName(recipeName);
-            parsedRecipe[i]=recipeName;
+            mdataRecipe.setId(myJSONObject.getString(recipeIDField));
+            mdataRecipe.setName( myJSONObject.getString(recipeNameField));
+            mdataRecipe.setServings(myJSONObject.getString(recipeServing));
+
+            dataRecipe.add(mdataRecipe);
+
 
         }
 
 
-        return parsedRecipe;
+        return dataRecipe;
 
     }
 }
