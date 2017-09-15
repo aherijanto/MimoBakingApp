@@ -46,7 +46,7 @@ public class RecipeOnJSON {
         JSONObject myJSONObject;
 
 
-        Recipe recipe= new Recipe();
+        
         ArrayList<Recipe> dataRecipe=new ArrayList();
 
 
@@ -80,7 +80,7 @@ public class RecipeOnJSON {
                 dataIngredient.add(mdataIngredient);
             }
 
-            recipe.setIngredients(dataIngredient);
+            mdataRecipe.setIngredients(dataIngredient);
 
                         //parsing steps
             JSONArray stepsJSONArray=myJSONObject.getJSONArray(recipeSteps);
@@ -106,7 +106,7 @@ public class RecipeOnJSON {
 
             dataRecipe.add(mdataRecipe);
 
-            recipe.setSteps(dataSteps);
+            mdataRecipe.setSteps(dataSteps);
         }
 
 
