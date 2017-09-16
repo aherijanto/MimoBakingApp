@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ary.mimobakingapp.MasterFragment;
 import com.example.ary.mimobakingapp.Model.Recipe;
 import com.example.ary.mimobakingapp.R;
 
@@ -21,6 +22,9 @@ import java.util.ArrayList;
 
 public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.MyViewHolder>{
 
+    private final ArrayList<Recipe> rvRecipeList;
+
+    Context context;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -38,8 +42,8 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
                     int pos=getAdapterPosition();
                     if(pos!=RecyclerView.NO_POSITION){
                         Recipe clickeddataItem= rvRecipeList.get(pos);
-                       // Intent intent=new Intent(mContext, .class);
-                        //intent.putExtra("original_title",movieList.get(pos).getOriginaltitle());
+                        Intent intent=new Intent(context,MasterFragment.class);
+                        intent.putExtra("ingredients",rvRecipeList.get(pos).getIngredients());
                         //intent.putExtra("poster_path",movieList.get(pos).getPosterpath());
                         //intent.putExtra("overview",movieList.get(pos).getOverview());
                         //intent.putExtra("vote_average",Double.toString(movieList.get(pos).getVoteAverage()));
@@ -61,9 +65,6 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
         }
     }
 
-    private final ArrayList<Recipe> rvRecipeList;
-
-    Context context;
 
     public RecipeMainAdapter(Context context, ArrayList<Recipe> rvRecipeList) {
         this.rvRecipeList = rvRecipeList;
