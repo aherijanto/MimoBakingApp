@@ -88,7 +88,7 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
 
     @Override
     public int getItemCount() {
-        return 0;
+        return rvRecipeList.size();
     }
 
 
