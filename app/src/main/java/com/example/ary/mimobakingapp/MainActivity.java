@@ -24,6 +24,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rvRecipeMain;
     private RecipeMainAdapter rvAdapter;
+    private ArrayList<Recipe> recipeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +32,15 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         rvRecipeMain = (RecyclerView)findViewById(R.id.rv_page_1);
+        recipeList = new ArrayList<Recipe>();
+        rvAdapter = new RecipeMainAdapter(this,recipeList);
+
         rvRecipeMain.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         rvRecipeMain.setLayoutManager(layoutManager);
+        rvRecipeMain.setAdapter(rvAdapter);
 
-
+        rvAdapter.notifyDataSetChanged();
 
         new FetchRecipe().execute();
 
@@ -68,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(ArrayList<Recipe> strings) {
             if (strings != null) {
 
-                rvRecipeMain.setAdapter(rvAdapter);
+                rvRecipeMain.setAdapter(new RecipeMainAdapter(getApplicationContext(), strings));;
 
 
                 }
