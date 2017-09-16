@@ -1,5 +1,8 @@
 package com.example.ary.mimobakingapp.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -7,7 +10,7 @@ import java.util.ArrayList;
  * Created by ary on 9/15/17.
  */
 
-public class Recipe
+public class Recipe implements Parcelable
 {
     private ArrayList<Ingredients> ingredients;
 
@@ -86,4 +89,36 @@ public class Recipe
     {
         return "ClassPojo [ingredients = "+ingredients+", id = "+id+", servings = "+servings+", name = "+name+", image = "+image+", steps = "+steps+"]";
     }
+
+    public Recipe(Parcel in) {
+        name = in.readString();
+        id = in.readString();
+        //mUrl = in.readString();
+        //iew= in.readString();
+        //releasedate = in.readString();
+        //favourite = in.readByte() != 0;
+        //title = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+    }
+
+    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
+        @Override
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
+        }
+
+        @Override
+        public Recipe[] newArray(int size) {
+            return new Recipe[size];
+        }
+    };
 }

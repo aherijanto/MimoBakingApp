@@ -1,8 +1,13 @@
 package com.example.ary.mimobakingapp;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvRecipeMain;
     private RecipeMainAdapter rvAdapter;
     private ArrayList<Recipe> recipeList;
+    private AppCompatActivity activity=MainActivity.this;
+    public static final String MY_KEY="com.example.ary.mimobakingapp.my_key";
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+        ArrayList parcelRecipe = new ArrayList(recipeList);
+        outState.putParcelableArrayList(MY_KEY,  parcelRecipe);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +50,27 @@ public class MainActivity extends AppCompatActivity {
         recipeList = new ArrayList<Recipe>();
         rvAdapter = new RecipeMainAdapter(this,recipeList);
 
-        rvRecipeMain.setHasFixedSize(true);
+        if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            rvRecipeMain.setLayoutManager(new GridLayoutManager(this, 1));
+        } else {
+            rvRecipeMain.setLayoutManager(new GridLayoutManager(this, 2));
+        }
+        //rvRecipeMain.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         rvRecipeMain.setLayoutManager(layoutManager);
         rvRecipeMain.setAdapter(rvAdapter);
 
         rvAdapter.notifyDataSetChanged();
 
-        new FetchRecipe().execute();
+        if (savedInstanceState == null) {
+            new FetchRecipe().execute();
+        } else {
+            ArrayList parcelRecipe = savedInstanceState.getParcelableArrayList(MY_KEY);
+            rvRecipeMain.setAdapter(new RecipeMainAdapter(getApplicationContext(), parcelRecipe));
+
+        }
+
+
 
     }
 
@@ -79,6 +107,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    public Activity getActivity() {
+        Context context = this;
+        while (context instanceof ContextWrapper) {
+            if (context instanceof Activity) {
+                return (Activity) context;
+            }
+            context = ((ContextWrapper) context).getBaseContext();
+
+        }
+
+        return this;
+
+    }
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.ary.mimobakingapp.Utilities;
 
 import android.content.Context;
+import android.os.Parcel;
 
 import com.example.ary.mimobakingapp.Model.Ingredients;
 import com.example.ary.mimobakingapp.Model.Recipe;
