@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ary on 9/15/17.
@@ -23,6 +24,24 @@ public class Recipe implements Parcelable
     private String image;
 
     private ArrayList<Steps> steps;
+
+
+    public Recipe(){
+
+
+    }
+
+
+    public Recipe(ArrayList<Ingredients> rIngredients,String recipeId, String rServings, String rName, String rImage, ArrayList<Steps> rSteps){
+
+        this.ingredients=rIngredients;
+        this.id=recipeId;
+        this.servings=rServings;
+        this.name=rName;
+        this.image=rImage;
+        this.steps=rSteps;
+
+    }
 
     public ArrayList<Ingredients> getIngredients ()
     {

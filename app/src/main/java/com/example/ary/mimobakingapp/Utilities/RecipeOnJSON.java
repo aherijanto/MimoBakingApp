@@ -56,7 +56,7 @@ public class RecipeOnJSON {
             Integer recipeID;
             String recipeName;
 
-            Recipe mdataRecipe=new Recipe();
+            Recipe mdataRecipe=new Recipe();                    ;
 
             myJSONObject = recipeJSONArray.getJSONObject(i);
 
