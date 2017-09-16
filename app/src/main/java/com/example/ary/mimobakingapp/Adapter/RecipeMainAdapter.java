@@ -38,7 +38,7 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
                     int pos=getAdapterPosition();
                     if(pos!=RecyclerView.NO_POSITION){
                         Recipe clickeddataItem= rvRecipeList.get(pos);
-                        //Intent intent=new Intent(mContext, DetailActivity.class);
+                       // Intent intent=new Intent(mContext, .class);
                         //intent.putExtra("original_title",movieList.get(pos).getOriginaltitle());
                         //intent.putExtra("poster_path",movieList.get(pos).getPosterpath());
                         //intent.putExtra("overview",movieList.get(pos).getOverview());
