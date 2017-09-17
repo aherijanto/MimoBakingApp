@@ -20,13 +20,13 @@ public class MainActivitySteps extends AppCompatActivity{
         setContentView(R.layout.activity_main_steps);
 
         Bundle extras = getIntent().getExtras();
-        ArrayList<String> recipe= extras.getStringArrayList("recipe");
+        Recipe recipe= extras.getParcelable("recipe");
 
         MainStepsFragment mainFragment = new MainStepsFragment();
 
 
         Bundle bundle = new Bundle();
-        bundle.putString("steps", String.valueOf(recipe));
+        bundle.putParcelable("steps", recipe);
         mainFragment.setArguments(bundle);
 
         FragmentManager fragmentManager=getSupportFragmentManager();
