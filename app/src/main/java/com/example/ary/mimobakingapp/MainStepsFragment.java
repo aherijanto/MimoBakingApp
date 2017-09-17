@@ -1,5 +1,6 @@
 package com.example.ary.mimobakingapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -31,9 +32,9 @@ public class MainStepsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_steps, container, false);
 
-        String getData = getArguments().getParcelable("steps");
-        stepsArrayList= new ArrayList<Steps>();
-        myadapter = new IngredientsAdapter(this,getData);
+        Recipe getData = getArguments().getParcelable("steps");
+        ArrayList<Steps> getSteps=getData.getSteps();
+        myadapter = new IngredientsAdapter(getActivity(),getSteps);
         mRecyclerview = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
 
