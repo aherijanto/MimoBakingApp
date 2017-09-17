@@ -1,16 +1,31 @@
 package com.example.ary.mimobakingapp.Model;
 
-/**
- * Created by ary on 9/15/17.
- */
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Ingredients
-{
+import java.util.ArrayList;
+public class Ingredients implements Parcelable {
+
     private String measure;
 
     private String ingredient;
 
     private String quantity;
+
+    public Ingredients(){
+
+    }
+
+    public Ingredients( String rmeasure, String ringredient, String rquantity){
+
+
+        this.measure=rmeasure;
+        this.ingredient=ringredient;
+        this.quantity=rquantity;
+
+
+    }
+
 
     public String getMeasure ()
     {
@@ -43,8 +58,38 @@ public class Ingredients
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [measure = "+measure+", ingredient = "+ingredient+", quantity = "+quantity+"]";
+    public String toString() {
+        return "ClassPojo [measure = " + measure + ", ingredient = " + ingredient + ", quantity = " + quantity + "]";
     }
-}
+
+    protected Ingredients(Parcel in) {
+        measure = in.readString();
+        ingredient = in.readString();
+        quantity = in.readString();
+    }
+
+        @Override
+        public int describeContents() {
+        return 0;
+    }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(measure);
+        dest.writeString(ingredient);
+        dest.writeString(quantity);
+    }
+
+        @SuppressWarnings("unused")
+        public static final Parcelable.Creator<Ingredients> CREATOR = new Parcelable.Creator<Ingredients>() {
+            @Override
+            public Ingredients createFromParcel(Parcel in) {
+                return new Ingredients(in);
+            }
+
+            @Override
+            public Ingredients[] newArray(int size) {
+                return new Ingredients[size];
+            }
+        };
+    }

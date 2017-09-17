@@ -12,8 +12,9 @@ import java.util.List;
  * Created by ary on 9/15/17.
  */
 
-public class Recipe implements Parcelable
-{
+
+
+public class Recipe implements Parcelable {
     private ArrayList<Ingredients> ingredients;
 
     private String id;
@@ -105,39 +106,65 @@ public class Recipe implements Parcelable
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [ingredients = "+ingredients+", id = "+id+", servings = "+servings+", name = "+name+", image = "+image+", steps = "+steps+"]";
+    public String toString() {
+        return "ClassPojo [ingredients = " + ingredients + ", id = " + id + ", servings = " + servings + ", name = " + name + ", image = " + image + ", steps = " + steps + "]";
     }
 
-    public Recipe(Parcel in) {
-        name = in.readString();
+    protected Recipe(Parcel in) {
+        if (in.readByte() == 0x01) {
+            ingredients = new ArrayList<Ingredients>();
+            in.readList(ingredients, Ingredients.class.getClassLoader());
+        } else {
+            ingredients = null;
+        }
         id = in.readString();
-        ingredients=in.readArrayList(null);
-        steps=in.readArrayList(null);
-
+        servings = in.readString();
+        name = in.readString();
+        image = in.readString();
+        if (in.readByte() == 0x01) {
+            steps = new ArrayList<Steps>();
+            in.readList(steps, Steps.class.getClassLoader());
+        } else {
+            steps = null;
+        }
     }
 
-    @Override
-    public int describeContents() {
+        @Override
+        public int describeContents() {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
-
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+        if (ingredients == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(ingredients);
+        }
+        dest.writeString(id);
+        dest.writeString(servings);
+        dest.writeString(name);
+        dest.writeString(image);
+        if (steps == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(steps);
+        }
     }
 
-    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
-        @Override
-        public Recipe createFromParcel(Parcel in) {
-            return new Recipe(in);
-        }
+        @SuppressWarnings("unused")
+        public static final Parcelable.Creator<Recipe> CREATOR = new Parcelable.Creator<Recipe>() {
+            @Override
+            public Recipe createFromParcel(Parcel in) {
+                return new Recipe(in);
+            }
 
-        @Override
-        public Recipe[] newArray(int size) {
-            return new Recipe[size];
-        }
-    };
-}
+            @Override
+            public Recipe[] newArray(int size) {
+                return new Recipe[size];
+            }
+        };
+    }
+

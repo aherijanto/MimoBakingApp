@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ary.mimobakingapp.MainActivitySteps;
+import com.example.ary.mimobakingapp.MainStepsFragment;
 import com.example.ary.mimobakingapp.Model.Recipe;
 import com.example.ary.mimobakingapp.Model.Steps;
 import com.example.ary.mimobakingapp.R;

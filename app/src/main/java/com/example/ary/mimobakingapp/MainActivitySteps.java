@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.ary.mimobakingapp.Model.Ingredients;
 import com.example.ary.mimobakingapp.Model.Recipe;
+import com.example.ary.mimobakingapp.Model.Steps;
 
 import java.util.ArrayList;
 
@@ -13,6 +15,19 @@ import java.util.ArrayList;
  */
 
 public class MainActivitySteps extends AppCompatActivity{
+    public static final String MY_KEY="com.example.ary.mimobakingapp.my_key";
+
+    private ArrayList<Steps> stepsArrayList;
+    private ArrayList<Ingredients> ingredientsArrayList ;
+
+    protected void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+        ArrayList parcelSteps = new ArrayList(stepsArrayList);
+        ArrayList parcelIngredients = new ArrayList(ingredientsArrayList);
+        outState.putParcelableArrayList(MY_KEY,  parcelSteps);
+        outState.putParcelableArrayList(MY_KEY,  parcelIngredients);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
