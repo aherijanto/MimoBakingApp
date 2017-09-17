@@ -2,6 +2,7 @@ package com.example.ary.mimobakingapp.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ArrayAdapter;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -112,11 +113,9 @@ public class Recipe implements Parcelable
     public Recipe(Parcel in) {
         name = in.readString();
         id = in.readString();
-        //mUrl = in.readString();
-        //iew= in.readString();
-        //releasedate = in.readString();
-        //favourite = in.readByte() != 0;
-        //title = in.readString();
+        ingredients=in.readArrayList(null);
+        steps=in.readArrayList(null);
+
     }
 
     @Override
@@ -126,6 +125,7 @@ public class Recipe implements Parcelable
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+
 
     }
 

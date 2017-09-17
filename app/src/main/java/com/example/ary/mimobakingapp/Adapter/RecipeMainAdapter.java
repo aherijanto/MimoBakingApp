@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ary.mimobakingapp.MasterFragment;
+import com.example.ary.mimobakingapp.MainActivitySteps;
+
+import com.example.ary.mimobakingapp.Model.Ingredients;
 import com.example.ary.mimobakingapp.Model.Recipe;
 import com.example.ary.mimobakingapp.R;
 
@@ -44,16 +46,13 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
                     int pos=getAdapterPosition();
                     if(pos!=RecyclerView.NO_POSITION){
                         Recipe clickeddataItem= rvRecipeList.get(pos);
-                        Intent intent=new Intent(context,MasterFragment.class);
-                        intent.putExtra("ingredients",rvRecipeList.get(pos).getIngredients());
-                        //intent.putExtra("poster_path",movieList.get(pos).getPosterpath());
-                        //intent.putExtra("overview",movieList.get(pos).getOverview());
-                        //intent.putExtra("vote_average",Double.toString(movieList.get(pos).getVoteAverage()));
-                        //intent.putExtra("id",movieList.get(pos).getId());
-                        //intent.putExtra("release_date",movieList.get(pos).getReleasedate());
-                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //mContext.startActivity(intent);
-                        //Toast.makeText(v.getContext(),clickeddataItem.getOriginaltitle(),Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(context,MainActivitySteps.class);
+
+                        intent.putExtra("recipe",rvRecipeList );
+
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+
                     }
                 }
 
