@@ -46,7 +46,7 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
                         Recipe clickeddataItem= rvRecipeList.get(pos);
                         Intent intent=new Intent(context, MainActivitySteps.class);
 
-                        intent.putExtra("recipe",rvRecipeList );
+                        intent.putExtra("recipe",clickeddataItem );
 
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);

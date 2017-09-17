@@ -23,13 +23,14 @@ public class MainStepsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_steps, container, false);
+
         String getData = getArguments().getString("steps");
 
         mRecyclerview = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
 
         mRecyclerview.setLayoutManager(llm);
-        mRecyclerview.setAdapter(myadapter,getData);
+        mRecyclerview.setAdapter(myadapter);
 
         return rootView;
     }

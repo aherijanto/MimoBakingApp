@@ -36,7 +36,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
         public MyViewHolder(View view){
             super(view);
-            shortDesc=(TextView) view.findViewById(R.id.steps);
+            shortDesc=(TextView) view.findViewById(R.id.shortdesc);
             desc=(TextView) view.findViewById(R.id.desc);
             videoURL=(TextView) view.findViewById(R.id.video_url);
         }
