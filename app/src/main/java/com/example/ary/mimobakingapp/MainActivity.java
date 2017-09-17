@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
         rvRecipeMain = (RecyclerView)findViewById(R.id.rv_page_1);
         recipeList = new ArrayList<Recipe>();
         rvAdapter = new RecipeMainAdapter(this,recipeList);

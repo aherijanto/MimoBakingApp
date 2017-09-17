@@ -22,9 +22,11 @@ import java.util.ArrayList;
 
 public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.MyViewHolder>{
 
+
     private final ArrayList<Recipe> rvRecipeList;
 
     Context context;
+
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
