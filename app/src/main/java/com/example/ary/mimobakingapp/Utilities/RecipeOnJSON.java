@@ -72,7 +72,7 @@ public class RecipeOnJSON {
             for (int j = 0;j< ingredientJSONArray.length();j++){
                 Ingredients mdataIngredient= new Ingredients();
 
-                ingredientJSONObject=ingredientJSONArray.getJSONObject(i);
+                ingredientJSONObject=ingredientJSONArray.getJSONObject(j);
 
                 mdataIngredient.setQuantity(ingredientJSONObject.getString(ingredientQty));
                 mdataIngredient.setMeasure(ingredientJSONObject.getString(ingredienMeasure));
@@ -92,7 +92,7 @@ public class RecipeOnJSON {
 
                 Steps mdataSteps= new Steps();
 
-                stepsJSONObject=stepsJSONArray.getJSONObject(i);
+                stepsJSONObject=stepsJSONArray.getJSONObject(k);
 
                 mdataSteps.setId(stepsJSONObject.getString(stepsId));
                 mdataSteps.setShortDescription(stepsJSONObject.getString(stepsShortDesc));
