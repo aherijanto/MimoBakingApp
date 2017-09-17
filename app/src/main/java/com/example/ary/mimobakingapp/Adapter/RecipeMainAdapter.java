@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ary.mimobakingapp.MainActivity;
 import com.example.ary.mimobakingapp.MainActivitySteps;
 
 import com.example.ary.mimobakingapp.Model.Ingredients;
@@ -43,7 +44,7 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
                     int pos=getAdapterPosition();
                     if(pos!=RecyclerView.NO_POSITION){
                         Recipe clickeddataItem= rvRecipeList.get(pos);
-                        Intent intent=new Intent(context,MainActivitySteps.class);
+                        Intent intent=new Intent(context, MainActivitySteps.class);
 
                         intent.putExtra("recipe",rvRecipeList );
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.ary.mimobakingapp.MainActivitySteps;
 import com.example.ary.mimobakingapp.Model.Recipe;
+import com.example.ary.mimobakingapp.Model.Steps;
 import com.example.ary.mimobakingapp.R;
 
 import java.util.ArrayList;
@@ -20,52 +21,30 @@ import java.util.ArrayList;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.MyViewHolder> {
 
+    private ArrayList<Steps> msteps;
 
-    private final ArrayList<Recipe> rvRecipeList;
 
     Context context;
 
-
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView recipeName;
+        public TextView shortDesc;
+        public TextView desc;
+        public TextView videoURL;
+
 
 
         public MyViewHolder(View view){
             super(view);
-            recipeName=(TextView) view.findViewById(R.id.recipename);
-
-
-            view.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    int pos=getAdapterPosition();
-                    if(pos!=RecyclerView.NO_POSITION){
-                        Recipe clickeddataItem= rvRecipeList.get(pos);
-                        Intent intent=new Intent(context,MainActivitySteps.class);
-
-                        intent.putExtra("recipe",rvRecipeList );
-
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-
-                    }
-                }
-
-
-
-
-
-
-            });
-
+            shortDesc=(TextView) view.findViewById(R.id.steps);
+            desc=(TextView) view.findViewById(R.id.desc);
+            videoURL=(TextView) view.findViewById(R.id.video_url);
         }
     }
 
 
-    public IngredientsAdapter(Context context, ArrayList<Recipe> rvRecipeList) {
-        this.rvRecipeList = rvRecipeList;
+    public IngredientsAdapter(Context context, ArrayList<Steps> mySteps) {
+        this.msteps=mySteps;
         this.context = context;
     }
 
@@ -73,20 +52,25 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     @Override
     public IngredientsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recipe_main_card, parent, false);
+                .inflate(R.layout.steps_card, parent, false);
         return new IngredientsAdapter.MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(IngredientsAdapter.MyViewHolder holder, int position) {
-        TextView myRecipeName=holder.recipeName;
-        myRecipeName.setText(rvRecipeList.get(position).getName());
+        TextView myshort=holder.shortDesc;
+        myshort.setText(msteps.get(position).getShortDescription());
 
+        TextView mydesc=holder.desc;
+        mydesc.setText(msteps.get(position).getDescription());
+
+        TextView myvideoURL=holder.videoURL;
+        myvideoURL.setText(msteps.get(position).getVideoURL());
     }
 
     @Override
     public int getItemCount() {
-        return rvRecipeList.size();
+        return msteps.size();
     }
 
 }

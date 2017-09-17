@@ -15,9 +15,17 @@ public class MainActivitySteps extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_steps);
 
-        MainStepsFragment mainFragment = new MainStepsFragment();
-        FragmentManager fragmentManager=getSupportFragmentManager();
+        Bundle extras = getIntent().getExtras();
+        String recipe= extras.getString("recipe");
 
+        MainStepsFragment mainFragment = new MainStepsFragment();
+
+
+        Bundle bundle = new Bundle();
+        bundle.putString("steps", recipe);
+        mainFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .add(R.id.mainStepsFragmentContainer,mainFragment)
                 .commit();
