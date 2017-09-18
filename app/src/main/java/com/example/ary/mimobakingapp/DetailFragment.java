@@ -64,20 +64,13 @@ public class DetailFragment extends Fragment {
             mTextView.setText(myDesc);
 
 
-                //BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-                //TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
-                //TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
 
-                //LoadControl loadControl = new DefaultLoadControl();
 
-                //player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
+
                 simpleExoPlayerView = new SimpleExoPlayerView(getActivity());
                 simpleExoPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player);
 
-                //simpleExoPlayerView.setUseController(true);
-                //simpleExoPlayerView.requestFocus();
 
-                //simpleExoPlayerView.setPlayer(player);
 
             Uri mp4VideoUri = Uri.parse(myvideo);
             TrackSelector trackSelector = new DefaultTrackSelector();
@@ -85,10 +78,7 @@ public class DetailFragment extends Fragment {
             player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
             simpleExoPlayerView.setPlayer(player);
 
-            // Set the ExoPlayer.EventListener to this activity.
-            //player.addListener((ExoPlayer.EventListener) getActivity().getApplicationContext());
 
-            // Prepare the MediaSource.
             String userAgent = Util.getUserAgent(getActivity(), "mimobakingapp");
             MediaSource mediaSource = new ExtractorMediaSource(mp4VideoUri, new DefaultDataSourceFactory(
                     getActivity(), userAgent), new DefaultExtractorsFactory(), null, null);
