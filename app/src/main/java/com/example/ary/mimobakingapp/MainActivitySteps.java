@@ -28,10 +28,11 @@ public class MainActivitySteps extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
 
         super.onSaveInstanceState(outState);
-        ArrayList parcelSteps = new ArrayList(stepsArrayList);
-        ArrayList parcelIngredients = new ArrayList(ingredientsArrayList);
-        outState.putParcelableArrayList(MY_KEY,  parcelSteps);
-        outState.putParcelableArrayList(MY_KEY,  parcelIngredients);
+        //stepsArrayList=
+        //Steps parcelSteps = new ArrayList<Recipe>;
+        //ArrayList parcelIngredients = new ArrayList(ingredientsArrayList);
+        //outState.putParcelableArrayList(MY_KEY,  stepsArrayList);
+        //outState.putParcelableArrayList(MY_KEY,  ingredientsArrayList);
     }
 
 
