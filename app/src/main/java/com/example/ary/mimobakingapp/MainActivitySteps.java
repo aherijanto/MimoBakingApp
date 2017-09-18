@@ -39,9 +39,11 @@ public class MainActivitySteps extends AppCompatActivity implements MyListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_steps);
 
         MainStepsFragment mainStepsFragment = MainStepsFragment.newInstance(this);
-        setContentView(R.layout.activity_main_steps);
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainStepsFragmentContainer, mainStepsFragment).commit();
+
 
         //receive recipe from RecipeMainAdapter
         Bundle extras = getIntent().getExtras();
@@ -54,10 +56,10 @@ public class MainActivitySteps extends AppCompatActivity implements MyListener{
         bundle.putParcelable("steps", recipe);
         mainStepsFragment.setArguments(bundle);
 
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(R.id.mainStepsFragmentContainer,mainStepsFragment)
-                .commit();
+        //FragmentManager fragmentManager=getSupportFragmentManager();
+        //fragmentManager.beginTransaction()
+        //        .add(R.id.mainStepsFragmentContainer,mainStepsFragment)
+         //       .commit();
 
         if(findViewById(R.id.detailContainer)!= null){
             mTabletMode = true;
