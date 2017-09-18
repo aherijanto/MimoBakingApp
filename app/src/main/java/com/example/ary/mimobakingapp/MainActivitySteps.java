@@ -47,16 +47,16 @@ public class MainActivitySteps extends AppCompatActivity implements MyListener{
         Bundle extras = getIntent().getExtras();
         Recipe recipe= extras.getParcelable("recipe");
 
-        MainStepsFragment mainFragment = new MainStepsFragment();
+        //MainStepsFragment mainFragment = new MainStepsFragment();
 
         //send ArrayListSteps to MainStepsFragment
         Bundle bundle = new Bundle();
         bundle.putParcelable("steps", recipe);
-        mainFragment.setArguments(bundle);
+        mainStepsFragment.setArguments(bundle);
 
         FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .add(R.id.mainStepsFragmentContainer,mainFragment)
+                .add(R.id.mainStepsFragmentContainer,mainStepsFragment)
                 .commit();
 
         if(findViewById(R.id.detailContainer)!= null){
