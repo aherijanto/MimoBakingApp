@@ -48,7 +48,8 @@ public class DetailFragment extends Fragment {
     private TextView mTextView;
     private SimpleExoPlayerView simpleExoPlayerView;
     private SimpleExoPlayer player;
-
+    private static final String TAG = "DetailFragment";
+    //protected DetailFragment activity;
 
     @Nullable
     @Override
@@ -82,11 +83,55 @@ public class DetailFragment extends Fragment {
 
             DefaultBandwidthMeter bandwidthMeterA = new DefaultBandwidthMeter();
 
-            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(getActivity(), "mimobakingapp"), bandwidthMeterA);
+            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(getActivity(), Util.getUserAgent(getActivity(), "mimobakingapp"), bandwidthMeterA);
 
             ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
+            MediaSource videoSource = new HlsMediaSource(mp4VideoUri, dataSourceFactory, 1, null, null);
+            final LoopingMediaSource loopingSource = new LoopingMediaSource(videoSource);
+            player.prepare(loopingSource);
+
+            player.addListener(new ExoPlayer.EventListener() {
+                @Override
+                public void onTimelineChanged(Timeline timeline, Object manifest) {
+                    Log.v(TAG, "Listener-onTimelineChanged...");
+                }
+
+                @Override
+                public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+                    Log.v(TAG, "Listener-onTracksChanged...");
+                }
+
+                @Override
+                public void onLoadingChanged(boolean isLoading) {
+                    Log.v(TAG, "Listener-onLoadingChanged...isLoading:"+isLoading);
+                }
+
+                @Override
+                public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+                    Log.v(TAG, "Listener-onPlayerStateChanged..." + playbackState);
+                }
 
 
+
+                @Override
+                public void onPlayerError(ExoPlaybackException error) {
+                    Log.v(TAG, "Listener-onPlayerError...");
+                    player.stop();
+                    player.prepare(loopingSource);
+                    player.setPlayWhenReady(true);
+                }
+
+                @Override
+                public void onPositionDiscontinuity() {
+                    Log.v(TAG, "Listener-onPositionDiscontinuity...");
+                }
+
+                @Override
+                public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+                    Log.v(TAG, "Listener-onPlaybackParametersChanged...");
+                }
+            });
+            player.setPlayWhenReady(true);
 
         }
         return rootView;
