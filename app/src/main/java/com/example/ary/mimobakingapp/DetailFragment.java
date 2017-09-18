@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.util.Log;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -68,7 +69,7 @@ public class DetailFragment extends Fragment {
 
                 LoadControl loadControl = new DefaultLoadControl();
 
-                player = ExoPlayerFactory.newSimpleInstance(this, trackSelector, loadControl);
+                player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
                 simpleExoPlayerView = new SimpleExoPlayerView(getActivity());
                 simpleExoPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player);
 
@@ -81,7 +82,7 @@ public class DetailFragment extends Fragment {
 
             DefaultBandwidthMeter bandwidthMeterA = new DefaultBandwidthMeter();
 
-            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "exoplayer2example"), bandwidthMeterA);
+            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(getActivity(), "mimobakingapp"), bandwidthMeterA);
 
             ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
 
