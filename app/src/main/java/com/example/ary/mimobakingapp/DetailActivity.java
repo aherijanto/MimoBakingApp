@@ -29,7 +29,7 @@ public class DetailActivity extends AppCompatActivity {
             args.putString("myvideourl", myvideoUrl);
 
             DetailFragment detailFragment = new DetailFragment();
-            detailFragment.setArguments(stepbundle);
+            detailFragment.setArguments(args);
             getSupportFragmentManager().beginTransaction().replace(R.id.detailContainer, detailFragment).commit();
         }
     }
