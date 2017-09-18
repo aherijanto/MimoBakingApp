@@ -22,6 +22,11 @@
             android:name=".MainActivitySteps">
 
         </activity>
+
+        <activity
+            android:name=".DetailActivity">
+
+        </activity>
     </application>
 
 </manifest>
