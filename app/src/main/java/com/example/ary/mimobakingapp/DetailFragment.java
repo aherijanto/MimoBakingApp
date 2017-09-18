@@ -86,7 +86,7 @@ public class DetailFragment extends Fragment {
             simpleExoPlayerView.setPlayer(player);
 
             // Set the ExoPlayer.EventListener to this activity.
-            player.addListener(getActivity());
+            player.addListener((ExoPlayer.EventListener) getActivity().getApplicationContext());
 
             // Prepare the MediaSource.
             String userAgent = Util.getUserAgent(getActivity(), "mimobakingapp");
@@ -105,34 +105,5 @@ public class DetailFragment extends Fragment {
     }
 
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.v(TAG, "onStop()...");
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.v(TAG, "onStart()...");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.v(TAG, "onResume()...");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.v(TAG, "onPause()...");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.v(TAG, "onDestroy()...");
-        player.release();
-    }
 }
