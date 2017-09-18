@@ -23,8 +23,9 @@ public class DetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.simple_exo_player_view, container, false);
         mTextView = (TextView) rootView.findViewById(R.id.textSteps);
         if (getArguments() != null) {
-            String myStep = getArguments().getString("clickedstep");
-            mTextView.setText(myStep);
+            String myDesc = getArguments().getString("mydesc");
+            String myvideo= getArguments().getString("myvideourl");
+            mTextView.setText(myDesc);
 
 
         }
