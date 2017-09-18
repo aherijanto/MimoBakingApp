@@ -23,6 +23,7 @@ import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.decoder.DecoderCounters;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.LoopingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
@@ -48,8 +49,7 @@ public class DetailFragment extends Fragment {
     private TextView mTextView;
     private SimpleExoPlayerView simpleExoPlayerView;
     private SimpleExoPlayer player;
-    private static final String TAG = "DetailFragment";
-    //protected DetailFragment activity;
+
 
     @Nullable
     @Override
@@ -64,76 +64,75 @@ public class DetailFragment extends Fragment {
             mTextView.setText(myDesc);
 
 
-                BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-                TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
-                TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
+                //BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+                //TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
+                //TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
 
-                LoadControl loadControl = new DefaultLoadControl();
+                //LoadControl loadControl = new DefaultLoadControl();
 
-                player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
-                simpleExoPlayerView = new SimpleExoPlayerView(getActivity());
-                simpleExoPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player);
+                //player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
+                //simpleExoPlayerView = new SimpleExoPlayerView(getActivity());
+                //simpleExoPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player);
 
-                simpleExoPlayerView.setUseController(true);
-                simpleExoPlayerView.requestFocus();
+                //simpleExoPlayerView.setUseController(true);
+                //simpleExoPlayerView.requestFocus();
 
-                simpleExoPlayerView.setPlayer(player);
+                //simpleExoPlayerView.setPlayer(player);
 
-                Uri mp4VideoUri = Uri.parse(myvideo);
+            Uri mp4VideoUri = Uri.parse(myvideo);
+            TrackSelector trackSelector = new DefaultTrackSelector();
+            LoadControl loadControl = new DefaultLoadControl();
+            player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
+            simpleExoPlayerView.setPlayer(player);
 
-            DefaultBandwidthMeter bandwidthMeterA = new DefaultBandwidthMeter();
+            // Set the ExoPlayer.EventListener to this activity.
+            player.addListener(getActivity());
 
-            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(getActivity(), Util.getUserAgent(getActivity(), "mimobakingapp"), bandwidthMeterA);
-
-            ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
-            MediaSource videoSource = new HlsMediaSource(mp4VideoUri, dataSourceFactory, 1, null, null);
-            final LoopingMediaSource loopingSource = new LoopingMediaSource(videoSource);
-            player.prepare(loopingSource);
-
-            player.addListener(new ExoPlayer.EventListener() {
-                @Override
-                public void onTimelineChanged(Timeline timeline, Object manifest) {
-                    Log.v(TAG, "Listener-onTimelineChanged...");
-                }
-
-                @Override
-                public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-                    Log.v(TAG, "Listener-onTracksChanged...");
-                }
-
-                @Override
-                public void onLoadingChanged(boolean isLoading) {
-                    Log.v(TAG, "Listener-onLoadingChanged...isLoading:"+isLoading);
-                }
-
-                @Override
-                public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                    Log.v(TAG, "Listener-onPlayerStateChanged..." + playbackState);
-                }
-
-
-
-                @Override
-                public void onPlayerError(ExoPlaybackException error) {
-                    Log.v(TAG, "Listener-onPlayerError...");
-                    player.stop();
-                    player.prepare(loopingSource);
-                    player.setPlayWhenReady(true);
-                }
-
-                @Override
-                public void onPositionDiscontinuity() {
-                    Log.v(TAG, "Listener-onPositionDiscontinuity...");
-                }
-
-                @Override
-                public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
-                    Log.v(TAG, "Listener-onPlaybackParametersChanged...");
-                }
-            });
+            // Prepare the MediaSource.
+            String userAgent = Util.getUserAgent(getActivity(), "mimobakingapp");
+            MediaSource mediaSource = new ExtractorMediaSource(mp4VideoUri, new DefaultDataSourceFactory(
+                    getActivity(), userAgent), new DefaultExtractorsFactory(), null, null);
+            player.prepare(mediaSource);
             player.setPlayWhenReady(true);
+
+
+
+            //player.setPlayWhenReady(true);
+            //player.setVideoDebugListener((VideoRendererEventListener) getActivity().getApplicationContext());
 
         }
         return rootView;
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.v(TAG, "onStop()...");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.v(TAG, "onStart()...");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.v(TAG, "onResume()...");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.v(TAG, "onPause()...");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.v(TAG, "onDestroy()...");
+        player.release();
     }
 }
