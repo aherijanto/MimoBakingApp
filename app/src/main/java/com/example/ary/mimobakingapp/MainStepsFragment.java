@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.ary.mimobakingapp.Adapter.IngredientsAdapter;
 import com.example.ary.mimobakingapp.Adapter.RecipeMainAdapter;
+import com.example.ary.mimobakingapp.Interface.MyListener;
 import com.example.ary.mimobakingapp.Model.Ingredients;
 import com.example.ary.mimobakingapp.Model.Recipe;
 import com.example.ary.mimobakingapp.Model.Steps;
@@ -29,20 +30,33 @@ public class MainStepsFragment extends Fragment {
     private IngredientsAdapter myadapter;
     private ArrayList<Steps> stepsArrayList;
     private TextView txtIngredient;
+    private MyListener listener;
 
+    //waiting for click item
+    public static MainStepsFragment newInstance(MyListener listener) {
+        MainStepsFragment mainStepsFragment=new MainStepsFragment();
+        mainStepsFragment.listener = listener;
+        return mainStepsFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_main_steps, container, false);
 
+
+        //receive ArrayListSteps from MainActivitySteps
         Recipe getData = getArguments().getParcelable("steps");
+
         ArrayList<Steps> getSteps=getData.getSteps();
         ArrayList<Ingredients> getIngredients=getData.getIngredients();
 
+        //write Step List to layout
         myadapter = new IngredientsAdapter(getActivity(),getSteps);
-        mRecyclerview = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
-        txtIngredient=(TextView) rootView.findViewById(R.id.ingredients);
 
+        mRecyclerview = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
+
+        txtIngredient=(TextView) rootView.findViewById(R.id.ingredients);
         txtIngredient.setText(getIngredients.toString());
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
