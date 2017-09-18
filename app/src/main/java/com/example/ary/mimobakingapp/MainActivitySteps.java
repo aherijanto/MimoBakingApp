@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by ary on 9/17/17.
  */
 
-public class MainActivitySteps extends AppCompatActivity implements MyListener{
+public class MainActivitySteps extends AppCompatActivity {
 
     public static final String MY_KEY="com.example.ary.mimobakingapp.my_key";
 
@@ -41,7 +41,8 @@ public class MainActivitySteps extends AppCompatActivity implements MyListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_steps);
 
-        MainStepsFragment mainStepsFragment = MainStepsFragment.newInstance(this);
+        MainStepsFragment mainStepsFragment=new MainStepsFragment();
+
         getSupportFragmentManager().beginTransaction().replace(R.id.mainStepsFragmentContainer, mainStepsFragment).commit();
 
 
@@ -89,15 +90,15 @@ public class MainActivitySteps extends AppCompatActivity implements MyListener{
         return mTabletMode;
     }
 
-    @Override
-    public void handleClick(int position) {
-        if (isTablet()) {
-            replaceFragment(position);
-        }else{
-            launchDetailActivity(position);
-        }
+    //@Override
+    //public void handleClick(int position) {
+     //   if (isTablet()) {
+     //       replaceFragment(position);
+     //   }else{
+     //       launchDetailActivity(position);
+     //   }
 
 
-    }
+   // }
 
 }

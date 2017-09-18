@@ -30,14 +30,9 @@ public class MainStepsFragment extends Fragment {
     private IngredientsAdapter myadapter;
     private ArrayList<Steps> stepsArrayList;
     private TextView txtIngredient;
-    private MyListener listener;
 
-    //waiting for click item
-    public static MainStepsFragment newInstance(MyListener listener) {
-        MainStepsFragment mainStepsFragment=new MainStepsFragment();
-        mainStepsFragment.listener = listener;
-        return mainStepsFragment;
-    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

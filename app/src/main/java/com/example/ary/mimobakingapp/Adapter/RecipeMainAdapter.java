@@ -44,6 +44,7 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
                     int pos=getAdapterPosition();
                     if(pos!=RecyclerView.NO_POSITION){
                         Recipe clickeddataItem= rvRecipeList.get(pos);
+
                         Intent intent=new Intent(context, MainActivitySteps.class);
 
                         intent.putExtra("recipe",clickeddataItem );

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.ary.mimobakingapp.DetailActivity;
 import com.example.ary.mimobakingapp.MainActivitySteps;
 import com.example.ary.mimobakingapp.MainStepsFragment;
 import com.example.ary.mimobakingapp.Model.Recipe;
@@ -40,6 +41,33 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
             shortDesc=(TextView) view.findViewById(R.id.shortdesc);
             desc=(TextView) view.findViewById(R.id.desc);
             videoURL=(TextView) view.findViewById(R.id.video_url);
+
+            view.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    int pos=getAdapterPosition();
+                    if(pos!=RecyclerView.NO_POSITION){
+                        Steps clickedStep=msteps.get(pos);
+                        String myDesc=clickedStep.getDescription();
+                        String myVideo=clickedStep.getVideoURL();
+
+                        Intent intent=new Intent(context, DetailActivity.class);
+
+                        intent.putExtra("desc",myDesc );
+                        intent.putExtra("videoUrl",myVideo);
+
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+
+                    }
+                }
+
+
+
+
+
+
+            });
         }
     }
 
@@ -67,6 +95,8 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
         TextView myvideoURL=holder.videoURL;
         myvideoURL.setText(msteps.get(position).getVideoURL());
+
+
     }
 
     @Override
