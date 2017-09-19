@@ -18,6 +18,7 @@ import com.example.ary.mimobakingapp.MainActivitySteps;
 import com.example.ary.mimobakingapp.Model.Ingredients;
 import com.example.ary.mimobakingapp.Model.Recipe;
 import com.example.ary.mimobakingapp.R;
+import com.example.ary.mimobakingapp.Widget.Provider;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -61,6 +62,9 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
                         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString(SHARED_PREFS_KEY, json).commit();
+
+                        Intent widgetintent = new Intent(this, Provider.class);
+                        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE\"");
 
                     }
                 }
