@@ -2,6 +2,8 @@ package com.example.ary.mimobakingapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.example.ary.mimobakingapp.MainActivitySteps;
 import com.example.ary.mimobakingapp.Model.Ingredients;
 import com.example.ary.mimobakingapp.Model.Recipe;
 import com.example.ary.mimobakingapp.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -24,6 +27,8 @@ import java.util.ArrayList;
  */
 
 public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.MyViewHolder>{
+
+    public static final String SHARED_PREFS_KEY = "SHARED_PREFS_KEY";
 
     private final ArrayList<Recipe> rvRecipeList;
 
@@ -44,13 +49,18 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
                     int pos=getAdapterPosition();
                     if(pos!=RecyclerView.NO_POSITION){
                         Recipe clickeddataItem= rvRecipeList.get(pos);
-
                         Intent intent=new Intent(context, MainActivitySteps.class);
-
                         intent.putExtra("recipe",clickeddataItem );
-
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
+
+                        //-----------------to widget------------------------------
+                        Gson gson = new Gson();
+                        String json = gson.toJson(clickeddataItem);
+
+                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString(SHARED_PREFS_KEY, json).commit();
 
                     }
                 }
@@ -83,8 +93,7 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
         TextView myRecipeName=holder.recipeName;
         myRecipeName.setText(rvRecipeList.get(position).getName());
-        //String vote=Double.toString(rvRecipeList.get(position).getVoteAverage());
-        //viewHolder.userrating.setText(vote);
+
     }
 
     @Override

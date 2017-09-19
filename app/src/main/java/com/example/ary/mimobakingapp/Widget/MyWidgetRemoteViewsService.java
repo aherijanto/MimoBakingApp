@@ -14,6 +14,7 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.example.ary.mimobakingapp.Model.Ingredients;
+import com.example.ary.mimobakingapp.Model.Recipe;
 import com.example.ary.mimobakingapp.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -35,10 +36,6 @@ public class MyWidgetRemoteViewsService extends RemoteViewsService {
         public MyWidgetRemoteViewsFactory(Context context) {
             this.context = context;
 
-
-
-
-
         }
 
         @Override
@@ -49,11 +46,11 @@ public class MyWidgetRemoteViewsService extends RemoteViewsService {
         @Override
         public void onDataSetChanged() {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            String json = preferences.getString(MainActivity.SHARED_PREFS_KEY, "");
+           String json = preferences.getString(Recipe.SHARED_PREFS_KEY, "");
             if (!json.equals("")) {
                 Gson gson = new Gson();
-                myIngredients = gson.fromJson(json, new TypeToken<ArrayList<Ingredients>>() {
-                }.getType());
+               myIngredients = gson.fromJson(json, new TypeToken<ArrayList<Ingredients>>() {
+               }.getType());
             }
         }
 
