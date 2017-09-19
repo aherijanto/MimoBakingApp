@@ -63,8 +63,11 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString(SHARED_PREFS_KEY, json).commit();
 
-                        Intent widgetintent = new Intent(this, Provider.class);
-                        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE\"");
+                        Intent widgetIntent;
+                        widgetIntent=new  Intent(context, Provider.class);
+                        widgetIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE\"");
+
+
 
                     }
                 }
@@ -78,6 +81,7 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
 
         }
     }
+
 
 
     public RecipeMainAdapter(Context context, ArrayList<Recipe> rvRecipeList) {
