@@ -50,7 +50,7 @@ public class MyWidgetRemoteViewsService extends RemoteViewsService {
            String json = preferences.getString(RecipeMainAdapter.SHARED_PREFS_KEY, "");
             if (!json.equals("")) {
                 Gson gson = new Gson();
-               myIngredients = gson.fromJson(json, new TypeToken<ArrayList<Ingredients>>() {
+               myIngredients = gson.fromJson(json, new TypeToken<Recipe>() {
                }.getType());
             }
         }
