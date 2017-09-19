@@ -13,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import com.example.ary.mimobakingapp.Adapter.RecipeMainAdapter;
 import com.example.ary.mimobakingapp.Model.Ingredients;
 import com.example.ary.mimobakingapp.Model.Recipe;
 import com.example.ary.mimobakingapp.R;
@@ -46,7 +47,7 @@ public class MyWidgetRemoteViewsService extends RemoteViewsService {
         @Override
         public void onDataSetChanged() {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-           String json = preferences.getString(Recipe.SHARED_PREFS_KEY, "");
+           String json = preferences.getString(RecipeMainAdapter.SHARED_PREFS_KEY, "");
             if (!json.equals("")) {
                 Gson gson = new Gson();
                myIngredients = gson.fromJson(json, new TypeToken<ArrayList<Ingredients>>() {
