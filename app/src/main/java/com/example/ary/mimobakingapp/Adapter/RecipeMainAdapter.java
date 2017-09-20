@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ary.mimobakingapp.MainActivity;
 import com.example.ary.mimobakingapp.MainActivitySteps;
 
@@ -39,10 +40,12 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView recipeName;
+        public ImageView recipeImage;
 
         public MyViewHolder(View view){
             super(view);
             recipeName=(TextView) view.findViewById(R.id.recipename);
+            recipeImage=(ImageView) view.findViewById(R.id.imageRecipe);
 
             view.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -101,6 +104,10 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
         TextView myRecipeName=holder.recipeName;
         myRecipeName.setText(rvRecipeList.get(position).getName());
+        Glide.with(context)
+                .load(rvRecipeList.get(position).getImage())
+                .placeholder(R.drawable.recipe)
+                .into(holder.recipeImage);
 
     }
 
