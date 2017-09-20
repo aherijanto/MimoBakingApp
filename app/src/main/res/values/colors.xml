@@ -2,10 +2,15 @@
 <resources>
 
         <color name="colorPrimary">#3F51B5</color>
-        <color name="colorPrimaryDark">#303F9F</color>
+        <color name="colorPrimaryDark">#9ea9f1</color>
         <color name="colorAccent">#FF4081</color>
-        <color name="viewbackground">#F1F5F8</color>
-        <color name="recipetitle">#4C4C4C</color>
+        <color name="viewbackground">#f1a9f9a7</color>
+        <color name="recipetitle">#df1a1a</color>
+        <color name="recipetitlemain">#9019f1</color>
+        <color name="backgroundsteps">#f9d491</color>
+        <color name="steptitle">#060005</color>
+        <color name="videourl">#035aef</color>
+
         <color name="white">#FFFF</color>
 
 </resources>

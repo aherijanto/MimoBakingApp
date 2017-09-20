@@ -11,16 +11,17 @@
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="114dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/card_margin"
         android:layout_weight="0.10"
-        android:elevation="3dp"
+        android:background="@color/backgroundsteps"
+        android:elevation="6dp"
         card_view:cardCornerRadius="@dimen/cardrecipe_radius">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="232dp">
+            android:layout_height="271dp">
 
 
             <TextView
@@ -28,47 +29,84 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="14dp"
                 android:paddingLeft="@dimen/recipetitle_padding"
                 android:paddingRight="@dimen/recipetitle_padding"
                 android:paddingTop="@dimen/recipetitle_padding"
                 android:textAlignment="center"
                 android:textColor="@color/recipetitle"
-                android:textSize="@dimen/recipetitle"
-                android:layout_marginTop="14dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:textSize="@dimen/recipetitle" />
 
             <TextView
                 android:id="@+id/desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="44dp"
                 android:paddingLeft="@dimen/recipetitle_padding"
                 android:paddingRight="@dimen/recipetitle_padding"
                 android:paddingTop="@dimen/recipetitle_padding"
                 android:textAlignment="center"
-                android:textColor="@color/recipetitle"
-                android:textSize="@dimen/recipetitle"
-                android:layout_alignParentTop="true"
+                android:textColor="@color/steptitle"
+                android:textSize="@dimen/recipetitle" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="44dp" />
+                android:layout_below="@+id/desc"
+                android:layout_marginTop="12dp"
+                android:text="Video Site:"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/videourl"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/video_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView"
                 android:paddingLeft="@dimen/recipetitle_padding"
                 android:paddingRight="@dimen/recipetitle_padding"
                 android:paddingTop="@dimen/recipetitle_padding"
                 android:textAlignment="center"
-                android:textColor="@color/recipetitle"
+                android:textColor="@color/videourl"
                 android:textSize="@dimen/recipetitle"
-                android:layout_below="@+id/desc"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/txtThumb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/video_url"
+                android:layout_marginTop="12dp"
+                android:text="Thumbnail:"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/videourl"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/videothumb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtThumb"
+
+                />
 
         </RelativeLayout>
 

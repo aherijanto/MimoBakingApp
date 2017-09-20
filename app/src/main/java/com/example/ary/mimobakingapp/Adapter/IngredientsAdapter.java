@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ary.mimobakingapp.DetailActivity;
 import com.example.ary.mimobakingapp.MainActivitySteps;
 import com.example.ary.mimobakingapp.MainStepsFragment;
@@ -33,6 +35,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         public TextView shortDesc;
         public TextView desc;
         public TextView videoURL;
+        public ImageView videoThumbnail;
 
 
 
@@ -41,6 +44,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
             shortDesc=(TextView) view.findViewById(R.id.shortdesc);
             desc=(TextView) view.findViewById(R.id.desc);
             videoURL=(TextView) view.findViewById(R.id.video_url);
+            videoThumbnail=(ImageView) view.findViewById(R.id.videothumb);
 
             view.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -95,6 +99,11 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
         TextView myvideoURL=holder.videoURL;
         myvideoURL.setText(msteps.get(position).getVideoURL());
+
+        Glide.with(context)
+                .load(msteps.get(position).getThumbnailURL())
+                .placeholder(R.drawable.vidthumb)
+                .into(holder.videoThumbnail);
 
 
     }
