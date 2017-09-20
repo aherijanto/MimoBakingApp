@@ -24,6 +24,8 @@ import java.util.ArrayList;
 public class MyWidgetRemoteViewsService extends RemoteViewsService {
 
 
+
+
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
         return new MyWidgetRemoteViewsFactory(this.getApplicationContext());
@@ -50,8 +52,10 @@ public class MyWidgetRemoteViewsService extends RemoteViewsService {
            String json = preferences.getString(RecipeMainAdapter.SHARED_PREFS_KEY, "");
             if (!json.equals("")) {
                 Gson gson = new Gson();
-               myIngredients = gson.fromJson(json, new TypeToken<Recipe>() {
+                Recipe myRecipeJSON = gson.fromJson(json, new TypeToken<Recipe>() {
                }.getType());
+                myIngredients=myRecipeJSON.getIngredients();
+
             }
         }
 
