@@ -34,6 +34,10 @@
                 android:resource="@xml/recipe_widget_provider_info" />
         </receiver>
 
+        <service android:name=".Widget.MyWidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:exported="false" />
+
     </application>
 
 </manifest>
