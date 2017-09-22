@@ -26,7 +26,7 @@ public class MainActivitySteps extends AppCompatActivity {
     private Boolean mTabletMode = false;
     private Recipe recipe;
 
-    
+
 
 
     @Override
