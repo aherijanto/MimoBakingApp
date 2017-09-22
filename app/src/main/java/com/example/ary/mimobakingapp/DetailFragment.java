@@ -49,7 +49,8 @@ public class DetailFragment extends Fragment {
     private TextView mTextView;
     private SimpleExoPlayerView simpleExoPlayerView;
     private SimpleExoPlayer player;
-
+    public Long position;
+    public String myvideo;
 
     @Nullable
     @Override
@@ -60,40 +61,59 @@ public class DetailFragment extends Fragment {
 
         if (getArguments() != null) {
             String myDesc = getArguments().getString("mydesc");
-            String myvideo= getArguments().getString("myvideourl");
+            myvideo= getArguments().getString("myvideourl");
             mTextView.setText(myDesc);
 
+            simpleExoPlayerView = new SimpleExoPlayerView(getActivity());
+            simpleExoPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player);
 
-
-
-
-                simpleExoPlayerView = new SimpleExoPlayerView(getActivity());
-                simpleExoPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player);
-
-
-
-            Uri mp4VideoUri = Uri.parse(myvideo);
-            TrackSelector trackSelector = new DefaultTrackSelector();
-            LoadControl loadControl = new DefaultLoadControl();
-            player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
-            simpleExoPlayerView.setPlayer(player);
-
-
-            String userAgent = Util.getUserAgent(getActivity(), "mimobakingapp");
-            MediaSource mediaSource = new ExtractorMediaSource(mp4VideoUri, new DefaultDataSourceFactory(
-                    getActivity(), userAgent), new DefaultExtractorsFactory(), null, null);
-            player.prepare(mediaSource);
-            player.setPlayWhenReady(true);
-
-
-
-            //player.setPlayWhenReady(true);
-            //player.setVideoDebugListener((VideoRendererEventListener) getActivity().getApplicationContext());
+            settingPlayer(Uri.parse(myvideo));
 
         }
         return rootView;
+
     }
 
 
 
+
+
+    public void settingPlayer(Uri myMedia) {
+    if (player == null) {
+
+        TrackSelector trackSelector = new DefaultTrackSelector();
+        LoadControl loadControl = new DefaultLoadControl();
+        player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
+        simpleExoPlayerView.setPlayer(player);
+
+
+        String userAgent = Util.getUserAgent(getActivity(), "mimobakingapp");
+        MediaSource mediaSource = new ExtractorMediaSource(myMedia, new DefaultDataSourceFactory(getActivity(), userAgent), new DefaultExtractorsFactory(), null, null);
+        player.prepare(mediaSource);
+        player.setPlayWhenReady(true);
+    }
 }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (player!=null) {
+            position = player.getCurrentPosition();
+            player.stop();
+            player.release();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (myvideo != null);
+            settingPlayer(Uri.parse(myvideo));
+
+    }
+
+
+}
+
+
