@@ -24,17 +24,9 @@ public class MainActivitySteps extends AppCompatActivity {
     private ArrayList<Steps> stepsArrayList;
     private ArrayList<Ingredients> ingredientsArrayList ;
     private Boolean mTabletMode = false;
+    private Recipe recipe;
 
-    protected void onSaveInstanceState(Bundle outState) {
-
-        super.onSaveInstanceState(outState);
-        //stepsArrayList=
-        //Steps parcelSteps = new ArrayList<Recipe>;
-        //ArrayList parcelIngredients = new ArrayList(ingredientsArrayList);
-        //outState.putParcelableArrayList(MY_KEY,  stepsArrayList);
-        //outState.putParcelableArrayList(MY_KEY,  ingredientsArrayList);
-    }
-
+    
 
 
     @Override
@@ -49,7 +41,8 @@ public class MainActivitySteps extends AppCompatActivity {
 
         //receive recipe from RecipeMainAdapter
         Bundle extras = getIntent().getExtras();
-        Recipe recipe= extras.getParcelable("recipe");
+        recipe= extras.getParcelable("recipe");
+
 
         //MainStepsFragment mainFragment = new MainStepsFragment();
 
