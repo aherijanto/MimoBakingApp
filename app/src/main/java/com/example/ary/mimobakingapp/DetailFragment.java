@@ -51,6 +51,10 @@ public class DetailFragment extends Fragment {
     private SimpleExoPlayer player;
     public Long position;
     public String myvideo;
+    public String myDesc;
+    private static final String MY_KEY_DESC="com.example.ary.mimobakingapp.my_key_desc";
+    private static final String MY_KEY_VIDEO="com.example.ary.mimobakingapp.my_key_video";
+    private static final String MY_KEY_POST="com.example.ary.mimobakingapp.my_key_pos";
 
     @Nullable
     @Override
@@ -60,7 +64,7 @@ public class DetailFragment extends Fragment {
 
 
         if (getArguments() != null) {
-            String myDesc = getArguments().getString("mydesc");
+            myDesc = getArguments().getString("mydesc");
             myvideo= getArguments().getString("myvideourl");
             mTextView.setText(myDesc);
 
@@ -110,6 +114,16 @@ public class DetailFragment extends Fragment {
         super.onResume();
         if (myvideo != null);
             settingPlayer(Uri.parse(myvideo));
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle currentState) {
+        super.onSaveInstanceState(currentState);
+        currentState.putString(MY_KEY_DESC,myDesc);
+        currentState.putString(MY_KEY_VIDEO,myvideo);
+        currentState.putLong(MY_KEY_POST,position);
+
 
     }
 
