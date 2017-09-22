@@ -116,7 +116,7 @@ public class DetailFragment extends Fragment {
             settingPlayer(Uri.parse(myvideo));
 
     }
-
+//-------Save and restore in Fragment
     @Override
     public void onSaveInstanceState(Bundle currentState) {
         super.onSaveInstanceState(currentState);
@@ -124,9 +124,16 @@ public class DetailFragment extends Fragment {
         currentState.putString(MY_KEY_VIDEO,myvideo);
         currentState.putLong(MY_KEY_POST,position);
 
-
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        myDesc= savedInstanceState.getString(MY_KEY_DESC);
+        myvideo = savedInstanceState.getString(MY_KEY_VIDEO);
+        position = savedInstanceState.getLong(MY_KEY_POST);
+    }
 
 }
 
