@@ -24,14 +24,14 @@
         <activity android:name=".DetailActivity"></activity>
 
 
-        <receiver android:name=".RecipeWidgetProvider">
+        <receiver android:name=".Widget.Provider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/recipe_widget_provider_info" />
+                android:resource="@xml/widget" />
         </receiver>
 
         <service android:name=".Widget.MyWidgetRemoteViewsService"
