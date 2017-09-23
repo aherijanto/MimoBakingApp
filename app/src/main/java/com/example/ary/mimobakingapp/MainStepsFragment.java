@@ -28,11 +28,18 @@ public class MainStepsFragment extends Fragment {
 
     private RecyclerView mRecyclerview;
     private IngredientsAdapter myadapter;
-    private ArrayList<Steps> stepsArrayList;
+    private ArrayList<Steps> getSteps;
     private TextView txtIngredient;
 
 
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelableArrayList("my_list", getSteps);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,8 +50,17 @@ public class MainStepsFragment extends Fragment {
         //receive ArrayListSteps from MainActivitySteps
         Recipe getData = getArguments().getParcelable("steps");
 
-        ArrayList<Steps> getSteps=getData.getSteps();
+
+
+        if (savedInstanceState == null) {
+            getSteps=getData.getSteps();
+        } else {
+            getSteps = savedInstanceState.getParcelableArrayList("my_list");
+        }
+
         ArrayList<Ingredients> getIngredients=getData.getIngredients();
+
+
 
         //write Step List to layout
         myadapter = new IngredientsAdapter(getActivity(),getSteps);
@@ -61,4 +77,7 @@ public class MainStepsFragment extends Fragment {
 
         return rootView;
     }
+
+
+
 }
