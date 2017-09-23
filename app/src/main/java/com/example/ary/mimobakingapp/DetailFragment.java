@@ -130,9 +130,11 @@ public class DetailFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        myDesc= savedInstanceState.getString(MY_KEY_DESC);
-        myvideo = savedInstanceState.getString(MY_KEY_VIDEO);
-        position = savedInstanceState.getLong(MY_KEY_POST);
+        if (savedInstanceState!=null) {
+            myDesc = savedInstanceState.getString(MY_KEY_DESC);
+            myvideo = savedInstanceState.getString(MY_KEY_VIDEO);
+            position = savedInstanceState.getLong(MY_KEY_POST);
+        }
     }
 
 }
