@@ -2,6 +2,7 @@ package com.example.ary.mimobakingapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,36 +26,45 @@ public class MainActivitySteps extends AppCompatActivity {
     private ArrayList<Ingredients> ingredientsArrayList ;
     private Boolean mTabletMode = false;
     private Recipe recipe;
+    private static final String MY_FRAGMENT="my_fragment";
+    private MainStepsFragment mainStepsFragment;
 
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        getSupportFragmentManager().putFragment(outState, MY_FRAGMENT, mainStepsFragment);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_steps);
 
-        MainStepsFragment mainStepsFragment=new MainStepsFragment();
+
+        if (savedInstanceState == null) {
+            mainStepsFragment=new MainStepsFragment();
+            Bundle extras = getIntent().getExtras();
+            recipe= extras.getParcelable("recipe");
+
+
+            //MainStepsFragment mainFragment = new MainStepsFragment();
+
+            //send ArrayListSteps to MainStepsFragment
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("steps", recipe);
+            mainStepsFragment.setArguments(bundle);
+
+        } else {
+            mainStepsFragment = (MainStepsFragment) getSupportFragmentManager().getFragment(savedInstanceState, MY_FRAGMENT);
+        }
+
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.mainStepsFragmentContainer, mainStepsFragment).commit();
 
-
-        //receive recipe from RecipeMainAdapter
-        Bundle extras = getIntent().getExtras();
-        recipe= extras.getParcelable("recipe");
-
-
-        //MainStepsFragment mainFragment = new MainStepsFragment();
-
-        //send ArrayListSteps to MainStepsFragment
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("steps", recipe);
-        mainStepsFragment.setArguments(bundle);
-
-        //FragmentManager fragmentManager=getSupportFragmentManager();
-        //fragmentManager.beginTransaction()
-        //        .add(R.id.mainStepsFragmentContainer,mainStepsFragment)
-         //       .commit();
 
         if(findViewById(R.id.detailContainer)!= null){
             mTabletMode = true;

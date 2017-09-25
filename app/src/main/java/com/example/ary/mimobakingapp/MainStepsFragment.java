@@ -30,15 +30,13 @@ public class MainStepsFragment extends Fragment {
     private IngredientsAdapter myadapter;
     private ArrayList<Steps> getSteps;
     private TextView txtIngredient;
-
+    private static final String KEY_LIST = "my_list";
 
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        outState.putParcelableArrayList("my_list", getSteps);
-
+        outState.putParcelableArrayList(KEY_LIST, getSteps);
     }
 
     @Override
@@ -49,7 +47,6 @@ public class MainStepsFragment extends Fragment {
 
         //receive ArrayListSteps from MainActivitySteps
         Recipe getData = getArguments().getParcelable("steps");
-
 
 
         if (savedInstanceState == null) {
@@ -77,7 +74,5 @@ public class MainStepsFragment extends Fragment {
 
         return rootView;
     }
-
-
 
 }
