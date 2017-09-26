@@ -34,7 +34,7 @@ public class DetailActivity extends AppCompatActivity {
             args.putString("myvideourl", myvideoUrl);
 
             if (savedInstanceState == null) {
-                DetailFragment detailFragment = new DetailFragment();
+                detailFragment = new DetailFragment();
                 detailFragment.setArguments(args);
 
             }else {

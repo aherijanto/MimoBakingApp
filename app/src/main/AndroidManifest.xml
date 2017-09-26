@@ -19,10 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivitySteps"></activity>
+
+        <activity android:name=".MainActivitySteps"
+            android:parentActivityName="com.example.ary.mimobakingapp.MainActivity" >
+            <!-- Parent activity meta-data to support API level 4+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ary.mimobakingapp.MainActivity" /></activity>
 
         <activity android:name=".DetailActivity"></activity>
-
 
         <receiver android:name=".Widget.Provider">
             <intent-filter>
