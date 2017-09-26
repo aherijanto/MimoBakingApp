@@ -33,9 +33,7 @@ public class MainActivitySteps extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         getSupportFragmentManager().putFragment(outState, MY_FRAGMENT, mainStepsFragment);
-
     }
 
     @Override
