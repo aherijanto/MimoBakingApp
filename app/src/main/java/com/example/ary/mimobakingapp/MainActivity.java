@@ -76,8 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
-
+        
     }
 
     public class FetchRecipe extends AsyncTask<String,Void,ArrayList<Recipe>>{
