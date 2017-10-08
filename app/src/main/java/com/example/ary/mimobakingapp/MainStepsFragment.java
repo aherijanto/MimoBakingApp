@@ -35,9 +35,6 @@ public class MainStepsFragment extends Fragment {
     private Parcelable layoutState;
 
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

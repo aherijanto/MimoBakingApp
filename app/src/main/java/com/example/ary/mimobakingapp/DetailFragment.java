@@ -62,7 +62,6 @@ public class DetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.simple_exo_player_view, container, false);
         mTextView = (TextView) rootView.findViewById(R.id.textSteps);
 
-
         if (getArguments() != null) {
             myDesc = getArguments().getString("mydesc");
             myvideo= getArguments().getString("myvideourl");
@@ -77,10 +76,6 @@ public class DetailFragment extends Fragment {
         return rootView;
 
     }
-
-
-
-
 
     public void settingPlayer(Uri myMedia) {
     if (player == null) {

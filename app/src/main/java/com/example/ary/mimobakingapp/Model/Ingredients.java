@@ -18,11 +18,9 @@ public class Ingredients implements Parcelable {
 
     public Ingredients( String rmeasure, String ringredient, String rquantity){
 
-
         this.measure=rmeasure;
         this.ingredient=ringredient;
         this.quantity=rquantity;
-
 
     }
 

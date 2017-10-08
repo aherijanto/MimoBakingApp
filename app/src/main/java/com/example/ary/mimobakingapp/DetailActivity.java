@@ -43,12 +43,8 @@ public class DetailActivity extends AppCompatActivity {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.detailContainer, detailFragment).commit();
 
-
         }
-
-
     }
-
 
     @Override
     protected void onSaveInstanceState (Bundle outState){

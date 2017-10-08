@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,16 +73,12 @@ public class MainActivity extends AppCompatActivity {
             rvRecipeMain.setAdapter(new RecipeMainAdapter(getApplicationContext(), parcelRecipe));
 
         }
-
-        
     }
 
     public class FetchRecipe extends AsyncTask<String,Void,ArrayList<Recipe>>{
 
         @Override
         protected ArrayList<Recipe> doInBackground(String... params) {
-
-
 
             URL RecipeRequestUrl = ConnectUtils.buildURL();
 
@@ -112,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
     public Activity getActivity() {
         Context context = this;
         while (context instanceof ContextWrapper) {
