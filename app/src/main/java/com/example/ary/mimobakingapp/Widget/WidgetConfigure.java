@@ -49,8 +49,10 @@ public class WidgetConfigure extends AppCompatActivity {
         }
 
         setContentView(R.layout.widget_recipe);
+
         RecyclerView rv = (RecyclerView) findViewById(com.example.ary.mimobakingapp.R.id.rv);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         String json = preferences.getString(RecipeMainAdapter.SHARED_PREFS_KEY, "");
         List<Recipe> recipes = new GsonBuilder().create().fromJson(json
                 , new TypeToken<List<Recipe>>(){}.getType());

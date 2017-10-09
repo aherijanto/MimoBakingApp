@@ -55,9 +55,11 @@ public class Provider extends AppWidgetProvider {
         Intent intent = new Intent(context, MyWidgetRemoteViewsService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId);
 
-        Type type = new TypeToken<List<Recipe>>(){}.getType();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String json = preferences.getString(RecipeMainAdapter.SHARED_PREFS_KEY, "");
+
+        Type type = new TypeToken<List<Recipe>>(){}.getType();
+
 
         List<Recipe> recipes = new GsonBuilder().create().fromJson(json, type);
 
