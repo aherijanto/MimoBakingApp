@@ -17,30 +17,58 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ClickRecipeName {
+public class RecipeNameClicked {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void clickRecipeName() {
+    public void recipeNameClicked() {
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.rv_page_1), isDisplayed()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
         ViewInteraction textView = onView(
-                allOf(withId(R.id.recipename), withText("Brownies"),
+                allOf(withId(R.id.video_url), withText("https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.card_view),
                                         0),
-                                1),
+                                3),
                         isDisplayed()));
-        textView.check(matches(withText("Brownies")));
+        textView.check(matches(withText("https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4")));
+
+        ViewInteraction imageView = onView(
+                allOf(withId(R.id.videothumb),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.card_view),
+                                        0),
+                                5),
+                        isDisplayed()));
+        imageView.check(matches(isDisplayed()));
+
+        ViewInteraction imageButton = onView(
+                allOf(withContentDescription("Navigate up"),
+                        childAtPosition(
+                                allOf(withId(R.id.action_bar),
+                                        childAtPosition(
+                                                withId(R.id.action_bar_container),
+                                                0)),
+                                0),
+                        isDisplayed()));
+        imageButton.check(matches(isDisplayed()));
 
     }
 

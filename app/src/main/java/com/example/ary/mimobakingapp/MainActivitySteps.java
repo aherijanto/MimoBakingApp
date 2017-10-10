@@ -97,16 +97,16 @@ public class MainActivitySteps extends AppCompatActivity {
         return mTabletMode;
     }
 
-    //@Override
-    //public void handleClick(int position) {
-     //   if (isTablet()) {
-     //       replaceFragment(position);
-     //   }else{
-     //       launchDetailActivity(position);
-     //   }
+
+    public void handleClick(int position) {
+       if (isTablet()) {
+            replaceFragment(position);
+        }else{
+            launchDetailActivity(position);
+        }
 
 
-   // }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

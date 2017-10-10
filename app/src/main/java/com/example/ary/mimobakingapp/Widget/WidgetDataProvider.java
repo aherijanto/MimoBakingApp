@@ -61,8 +61,8 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
         Ingredients ingredient = ingredientList.get(position);
         RemoteViews views = new RemoteViews(context.getPackageName(), android.R.layout.simple_list_item_1);
        //
-        views.setTextViewText(android.R.id.text1, String.format(context.getString(R.string.ingredients_detail)
-               , ingredient.getQuantity(),ingredient.getMeasure(), ingredient.getIngredient()));
+       // views.setTextViewText(android.R.id.text1, String.format(context.getString(R.string.ingredients_detail)
+       //        , ingredient.getQuantity(),ingredient.getMeasure(), ingredient.getIngredient()));
         return views;
     }
 
