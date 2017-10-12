@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.ary.mimobakingapp.Interface.MyListener;
 import com.example.ary.mimobakingapp.MainActivity;
 import com.example.ary.mimobakingapp.MainActivitySteps;
 
@@ -23,6 +24,7 @@ import com.example.ary.mimobakingapp.Widget.Provider;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ary on 9/15/17.
@@ -35,12 +37,13 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
     private final ArrayList<Recipe> rvRecipeList;
 
     Context context;
-
+    private MyListener myListener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView recipeName;
         public ImageView recipeImage;
+
 
         public MyViewHolder(View view){
             super(view);
@@ -58,7 +61,9 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
 
-                        //-----------------to widget------------------------------
+                        //-----------------to widget--
+                        // ----------------------------
+
                         Gson gson = new Gson();
                         String json = gson.toJson(clickeddataItem);
 
@@ -90,6 +95,7 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
     public RecipeMainAdapter(Context context, ArrayList<Recipe> rvRecipeList) {
         this.rvRecipeList = rvRecipeList;
         this.context = context;
+
     }
 
 

@@ -34,6 +34,13 @@ public class MainStepsFragment extends Fragment {
     private static final String KEY_LIST = "my_list";
     private Parcelable layoutState;
 
+    private MyListener listener;
+
+    public static MainStepsFragment newInstance(MyListener listener) {
+        MainStepsFragment mainFragment = new MainStepsFragment();
+        mainFragment.listener = listener;
+        return mainFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

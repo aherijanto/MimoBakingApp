@@ -63,6 +63,7 @@ public class DetailFragment extends Fragment {
         mTextView = (TextView) rootView.findViewById(R.id.textSteps);
 
         if (getArguments() != null) {
+            int position = getArguments().getInt("ARGUMENTS", -1);
             myDesc = getArguments().getString("mydesc");
             myvideo= getArguments().getString("myvideourl");
             mTextView.setText(myDesc);

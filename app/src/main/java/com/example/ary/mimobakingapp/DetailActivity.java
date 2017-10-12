@@ -22,7 +22,7 @@ public class DetailActivity extends AppCompatActivity {
 
         if (getIntent() != null) {
             //Get EXTRA from intent and attach to Fragment as Argument
-
+            int position = getIntent().getIntExtra("clickedsteps", -1);
             //receive desc and video string from IngredientsAdapter
             Bundle stepbundle = getIntent().getExtras();
             String mydesc = stepbundle.getString("desc");
@@ -32,6 +32,7 @@ public class DetailActivity extends AppCompatActivity {
             Bundle args = new Bundle();
             args.putString("mydesc", mydesc);
             args.putString("myvideourl", myvideoUrl);
+            args.putInt("ARGUMENTS",position);
 
             if (savedInstanceState == null) {
                 detailFragment = new DetailFragment();

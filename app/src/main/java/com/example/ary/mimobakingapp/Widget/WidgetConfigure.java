@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.ary.mimobakingapp.Adapter.RecipeMainAdapter;
 import com.example.ary.mimobakingapp.Model.Recipe;
 import com.example.ary.mimobakingapp.R;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
@@ -51,14 +52,16 @@ public class WidgetConfigure extends AppCompatActivity {
         setContentView(R.layout.widget_recipe);
 
         RecyclerView rv = (RecyclerView) findViewById(com.example.ary.mimobakingapp.R.id.rv);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String json = preferences.getString(RecipeMainAdapter.SHARED_PREFS_KEY, "");
-        List<Recipe> recipes = new GsonBuilder().create().fromJson(json
-                , new TypeToken<List<Recipe>>(){}.getType());
+        if (!json.equals("")) {
+            Gson gson = new Gson();
+            List<Recipe> recipes = gson.fromJson(json, new TypeToken<Recipe>() {
+            }.getType());
+        }
         rv.setAdapter(new RecyclerViewWidgetAdapter(recipes));
         rv.setLayoutManager(new LinearLayoutManager(this));
-
     }
 
     private void execute(Recipe recipe){
@@ -76,8 +79,7 @@ public class WidgetConfigure extends AppCompatActivity {
 
     @SuppressWarnings("deprecation")
     @SuppressLint("NewApi")
-    private RemoteViews initViews(Context context,
-                                  AppWidgetManager widgetManager, int widgetId, Recipe recipe) {
+    private RemoteViews initViews(Context context,AppWidgetManager widgetManager, int widgetId, Recipe recipe) {
 
         RemoteViews mView = new RemoteViews(context.getPackageName(),
                 R.layout.widget_layout);
@@ -99,7 +101,7 @@ public class WidgetConfigure extends AppCompatActivity {
         private Context context;
         List<Recipe> recipes = new ArrayList<>();
 
-        public RecyclerViewWidgetAdapter(List<Recipe> recipes){
+        public RecyclerViewWidgetAdapter(ArrayList<Recipe> recipes){
             this.recipes = recipes;
         }
 

@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
 
                  ArrayList<Recipe> JsonRecipeData = RecipeOnJSON.getRecipeName(MainActivity.this,RecipeResponse);
 
-
                 return JsonRecipeData;
 
             } catch (Exception e) {
