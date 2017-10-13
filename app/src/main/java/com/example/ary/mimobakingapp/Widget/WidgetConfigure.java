@@ -60,7 +60,7 @@ public class WidgetConfigure extends AppCompatActivity {
             List<Recipe> recipes = gson.fromJson(json, new TypeToken<Recipe>() {
             }.getType());
         }
-        rv.setAdapter(new RecyclerViewWidgetAdapter(recipes));
+       // rv.setAdapter(new RecyclerViewWidgetAdapter(recipes));
         rv.setLayoutManager(new LinearLayoutManager(this));
     }
 
