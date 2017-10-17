@@ -62,7 +62,7 @@ public class MainStepsFragment extends Fragment {
         mRecyclerview = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
         myadapter = new IngredientsAdapter(getActivity(),getSteps);
 
-
+        
         txtIngredient=(TextView) rootView.findViewById(R.id.ingredients);
         txtIngredient.setText(getIngredients.toString());
 

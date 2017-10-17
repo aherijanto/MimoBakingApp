@@ -108,8 +108,8 @@ public class DetailFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (myvideo != null);
-            settingPlayer(Uri.parse(myvideo));
+        if (myvideo != null){
+            settingPlayer(Uri.parse(myvideo));}
 
     }
 //-------Save and restore in Fragment
